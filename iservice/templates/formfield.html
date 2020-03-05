@@ -1,0 +1,56 @@
+{% macro renderField(form) %}
+    {% if form.errors %}
+        <div class="row form-group">
+            <div class="col-md-12 mb-3 mb-md-0">
+                {{ form.label(class="font-weight-bold text-capitalize") }}
+                {{ form(class='form-control is-invalid') }}
+                <div class="invalid-feedback">
+                    {% for error in form.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row form-group">
+            <div class="col-md-12 mb-3 mb-md-0">
+                {{ form.label(class="font-weight-bold text-capitalize") }}
+                {{ form(class='form-control') }}
+            </div>
+        </div>
+    {% endif %}
+
+{% endmacro %}
+
+
+{% macro searchform(form) %}
+    <form action="{{ url_for('home.search_service') }}" class="search-job" method="get">
+        <div class="row">
+            <div class="col-md">
+                <div class="form-group">
+                    <div class="form-field">
+                        <div class="icon"><span class="icon-briefcase"></span></div>
+                        {{ form.title(class='form-control') }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-group">
+                    <div class="form-field">
+                        <div class="icon"><span class="icon-map-marker"></span>
+                        </div>
+                        {{ form.location(class='form-control') }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-group">
+                    <div class="form-field">
+                        <input type="submit" value="Search"
+                               class="form-control btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endmacro %}
